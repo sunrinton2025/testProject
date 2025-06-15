@@ -605,6 +605,7 @@ MonoBehaviour:
   - {fileID: 8001833156418409173, guid: ba3dcc387fd7fc74788f47e094ecae58, type: 3}
   playerPos: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
+  objectsInLayer: []
 --- !u!4 &859166425
 Transform:
   m_ObjectHideFlags: 0
@@ -1409,7 +1410,19 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8558736111638752458, guid: c674033cf2944e148b3be50d1482c011, type: 3}
+      propertyPath: overrideFields.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558736111638752458, guid: c674033cf2944e148b3be50d1482c011, type: 3}
+      propertyPath: overrideFields.Array.data[1].key
+      value: attackDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558736111638752458, guid: c674033cf2944e148b3be50d1482c011, type: 3}
       propertyPath: overrideFields.Array.data[0].defaultValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558736111638752458, guid: c674033cf2944e148b3be50d1482c011, type: 3}
+      propertyPath: overrideFields.Array.data[1].defaultValue
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
