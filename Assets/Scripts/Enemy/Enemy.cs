@@ -1,6 +1,8 @@
 using UnityEngine;
 using minyee2913.Utils;
 using System;
+using System.Collections.Generic;
+using UnityEngine.Categorization;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,11 +15,14 @@ public class Enemy : MonoBehaviour
     public float attackRange;
     public Cooldown atkCool = new(1);
     public float damage;
+    public static List<Enemy> enemies = new();
     void Awake()
     {
         player = GameObject.Find("Player");
         range = GetComponent<RangeController>();
         health = GetComponent<HealthObject>();
+        enemies.Add(this);
+        health.OnDeath(onDeath);
     }
     void Update()
     {
@@ -27,7 +32,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        EnemyMove(moveDir,moveSpeed);
+        EnemyMove(moveDir, moveSpeed);
     }
     void EnemyMove(Vector3 moveDir, float moveSpeed)
     {
@@ -58,5 +63,10 @@ public class Enemy : MonoBehaviour
                 hp.GetDamage((int)damage, health, HealthObject.Cause.Melee);
             }
         }
+    }
+    void onDeath(HealthObject.OnDamageEv dam)
+    {
+        enemies.Remove(this);
+        Destroy(gameObject);
     }
 }

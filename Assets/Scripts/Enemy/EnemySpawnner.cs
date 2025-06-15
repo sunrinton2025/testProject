@@ -20,16 +20,13 @@ public class EnemySpawnner : MonoBehaviour
     {
         playerPos = player.transform.position;
     }
-    void FixedUpdate()
-    {
-        getEnemyList();
-    }
     IEnumerator EnemySpawn()
     {
         while (!PlayerController.Local.battle.health.isDeath)
         {
-            if (objectsInLayer.Count > 3)
+            if (Enemy.enemies.Count <= 3)
             {
+                yield return null;
                 continue;
             }
             float randTime = Random.Range(0.5f, 2f);
@@ -37,19 +34,6 @@ public class EnemySpawnner : MonoBehaviour
             Vector3 randPos = new Vector3(playerPos.x + Random.Range(10, 20), 0, 0);
             yield return new WaitForSeconds(randTime);
             Instantiate(enemyList[randObject], randPos, Quaternion.identity);
-        }
-    }
-    void getEnemyList()
-    {
-        objectsInLayer.Clear();
-        int layer = LayerMask.NameToLayer("enemy");
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.layer == layer)
-            {
-                objectsInLayer.Add(obj);
-            }
         }
     }
 }
