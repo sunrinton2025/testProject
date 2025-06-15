@@ -30,7 +30,9 @@ public class GradientImage : MonoBehaviour
 
         if (colors.Count > 0)
         {
-            image.color = Color.Lerp(image.color, colors[index], time / delay);
+            float t = Mathf.Clamp01(time / delay);
+
+            image.color = Color.LerpUnclamped(image.color, colors[index], t);
 
             if (time >= delay)
             {
