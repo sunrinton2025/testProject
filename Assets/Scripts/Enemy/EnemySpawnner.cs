@@ -24,7 +24,7 @@ public class EnemySpawnner : MonoBehaviour
     {
         while (!PlayerController.Local.battle.health.isDeath)
         {
-            if (Enemy.enemies.Count <= 3)
+            if (Enemy.enemies.Count >= 3)
             {
                 yield return null;
                 continue;
